@@ -89,14 +89,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // Each auto clicker upgrade increases the auto click value.
     function createAutoUpgrades() {
         return [
-            { id: 1, name: "Auto Clicker Upgrade 1", cost: 20, increment: 1, count: 0 },
-            { id: 2, name: "Auto Clicker Upgrade 2", cost: 100, increment: 2, count: 0 },
-            { id: 3, name: "Auto Clicker Upgrade 3", cost: 500, increment: 5, count: 0 },
-            { id: 4, name: "Auto Clicker Upgrade 4", cost: 2000, increment: 10, count: 0 },
-            { id: 5, name: "Auto Clicker Upgrade 5", cost: 10000, increment: 20, count: 0 },
-            { id: 6, name: "Auto Clicker Upgrade 6", cost: 40000, increment: 50, count: 0 },
-            { id: 7, name: "Auto Clicker Upgrade 7", cost: 200000, increment: 100, count: 0 },
-            { id: 8, name: "Auto Clicker Upgrade 8", cost: 1000000, increment: 250, count: 0 }
+            { id: 1, name: "Baking Bot", cost: 20, increment: 1, count: 0 },
+            { id: 2, name: "Cookie Conveyor", cost: 100, increment: 2, count: 0 },
+            { id: 3, name: "Dough Drone", cost: 500, increment: 5, count: 0 },
+            { id: 4, name: "Oven Overcharger", cost: 2000, increment: 10, count: 0 },
+            { id: 5, name: "Pastry Processor", cost: 10000, increment: 20, count: 0 },
+            { id: 6, name: "Sugar Synthesizer", cost: 40000, increment: 50, count: 0 },
+            { id: 7, name: "Frosting Facilitator", cost: 200000, increment: 100, count: 0 },
+            { id: 8, name: "Grandma's Oven", cost: 1000000, increment: 250, count: 0 }
         ];
     }
 
