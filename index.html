@@ -6,11 +6,29 @@
     <title>Cookie Clicker</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
+    <link rel="icon" type="image/png" href="media/cookie.png">  
 </head>
 <body>
-    <div id="game">
-        <img id="cookie" src="media/cookie.png" alt="Cookie">
-        <p>Score: <span id="score">0</span></p>
+    <!-- New collapsible sidebar -->
+    <div id="sidebar" class="collapsed">
+        <button id="sidebarToggle">☰</button>
+        <ul id="mouse-upgrade"></ul>
+        <div id="auto-upgrades">
+            <ul id="auto-upgrade-1"></ul>
+            <ul id="auto-upgrade-2"></ul>
+            <ul id="auto-upgrade-3"></ul>
+            <ul id="auto-upgrade-4"></ul>
+            <ul id="auto-upgrade-5"></ul>
+            <ul id="auto-upgrade-6"></ul>
+            <ul id="auto-upgrade-7"></ul>
+        </div>
+    </div>
+    <!-- Wrap main content for layout adjustments -->
+    <div id="main-content">
+        <div id="game">
+            <img id="cookie" src="media/cookie.png" alt="Cookie">
+            <p>Score: <span id="score">0</span></p>
+        </div>
     </div>
 </body>
 </html>
