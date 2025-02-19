@@ -87,16 +87,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Helper function to create an array of 8 auto clicker upgrades.
     // Each auto clicker upgrade increases the auto click value.
-    function createAutoUpgrades() {
+    function createAutoUpgrades(chainLabel) {
         return [
-            { id: 1, name: "Baking Bot", cost: 20, increment: 1, count: 0 },
-            { id: 2, name: "Cookie Conveyor", cost: 100, increment: 2, count: 0 },
-            { id: 3, name: "Dough Drone", cost: 500, increment: 5, count: 0 },
-            { id: 4, name: "Oven Overcharger", cost: 2000, increment: 10, count: 0 },
-            { id: 5, name: "Pastry Processor", cost: 10000, increment: 20, count: 0 },
-            { id: 6, name: "Sugar Synthesizer", cost: 40000, increment: 50, count: 0 },
-            { id: 7, name: "Frosting Facilitator", cost: 200000, increment: 100, count: 0 },
-            { id: 8, name: "Grandma's Oven", cost: 1000000, increment: 250, count: 0 }
+            { id: 1, name: `${chainLabel} - Baking Bot`, cost: 20, increment: 1, count: 0 },
+            { id: 2, name: `${chainLabel} - Cookie Conveyor`, cost: 100, increment: 2, count: 0 },
+            { id: 3, name: `${chainLabel} - Dough Drone`, cost: 500, increment: 5, count: 0 },
+            { id: 4, name: `${chainLabel} - Oven Overcharger`, cost: 2000, increment: 10, count: 0 },
+            { id: 5, name: `${chainLabel} - Pastry Processor`, cost: 10000, increment: 20, count: 0 },
+            { id: 6, name: `${chainLabel} - Sugar Synthesizer`, cost: 40000, increment: 50, count: 0 },
+            { id: 7, name: `${chainLabel} - Frosting Facilitator`, cost: 200000, increment: 100, count: 0 },
+            { id: 8, name: `${chainLabel} - Grandma's Oven`, cost: 1000000, increment: 250, count: 0 }
         ];
     }
 
@@ -105,9 +105,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const autoClickerChains = [];
     // Loop to create 7 chains.
     for (let i = 1; i <= 7; i++) {
+        const chainLabel = `Auto Clicker ${i}`;
         autoClickerChains.push({
-            label: `Auto Clicker ${i}`,                // A label to identify the chain.
-            upgrades: createAutoUpgrades(),             // Generate a fresh copy of 8 upgrades.
+            label: chainLabel,                // A label to identify the chain.
+            upgrades: createAutoUpgrades(chainLabel),             // Generate a fresh copy of 8 upgrades.
             currentIndex: 0,                            // Start at the first upgrade.
             autoValue: 0,                               // Auto click value starts at 0.
             listEl: document.getElementById(`auto-upgrade-${i}`) // Get the corresponding <ul> element by its id.
@@ -125,7 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Create a new <li> element to display the upgrade for this auto clicker.
             const li = document.createElement('li');
             // Set the text to show the chain label, upgrade name, and cost.
-            li.textContent = `${chain.label} - ${upg.name} (Cost: ${upg.cost})`;
+            li.textContent = `${upg.name} (Cost: ${upg.cost})`;
             // Add a click event listener to handle purchasing the upgrade.
             li.addEventListener('click', () => {
                 // Check if the player has enough cookies to purchase.
