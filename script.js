@@ -158,4 +158,35 @@ document.addEventListener('DOMContentLoaded', () => {
     sidebarToggle.addEventListener('click', () => {
         sidebar.classList.toggle('collapsed');
     });
+
+    // -------------------------
+    // Options Menu and Theme Modal Functionality
+    // -------------------------
+    const optionsButton = document.getElementById('options-button');
+    const themeModal = document.getElementById('theme-modal');
+    const closeThemeModal = document.getElementById('close-theme-modal');
+    
+    // Show the modal when options button is clicked
+    optionsButton.addEventListener('click', () => {
+        themeModal.classList.remove('hidden');
+    });
+    
+    // Hide the modal when close button is clicked
+    closeThemeModal.addEventListener('click', () => {
+        themeModal.classList.add('hidden');
+    });
+    
+    // Add event listeners on each theme option in the modal
+    const themeOptions = themeModal.querySelectorAll('li[data-theme]');
+    themeOptions.forEach(option => {
+        option.addEventListener('click', () => {
+            // Remove any existing theme class from body
+            document.body.classList.remove('theme-dark', 'theme-pink', 'theme-brown');
+            // Add the selected theme class to the body
+            const selectedTheme = option.getAttribute('data-theme');
+            document.body.classList.add(`theme-${selectedTheme}`);
+            // Hide the modal after selection
+            themeModal.classList.add('hidden');
+        });
+    });
 });
