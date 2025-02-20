@@ -21,6 +21,21 @@ document.addEventListener('DOMContentLoaded', () => {
     let autoClickCount = 0;
     // Set the base value per click for the cookie (can be increased via upgrades).
     let cookieValue = 1;
+    // New variable: count human clicks that occur within the current second.
+    let humanClicksThisSecond = 0;
+
+    // Get reference to error modal elements.
+    const errorModal = document.getElementById('error-modal');
+    const closeErrorModal = document.getElementById('close-error-modal');
+
+    // Function to open error modal.
+    function openErrorModal() {
+        errorModal.classList.remove('hidden');
+    }
+    // Event listener for closing the error modal.
+    closeErrorModal.addEventListener('click', () => {
+        errorModal.classList.add('hidden');
+    });
 
     // -------------------------
     // Begin Mouse Upgrade System Section
@@ -53,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     currentMouseUpgradeIndex++;
                     renderMouseUpgrade();
                 } else {
-                    alert("Not enough cookies!");
+                    openErrorModal();
                 }
             });
             mouseUpgradeList.appendChild(li);
@@ -108,7 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     chain.currentIndex++;
                     renderAutoUpgrade(chain);
                 } else {
-                    alert("Not enough cookies!");
+                    openErrorModal();
                 }
             });
             chain.listEl.appendChild(li);
@@ -121,21 +136,25 @@ document.addEventListener('DOMContentLoaded', () => {
     autoClickerChains.forEach(chain => renderAutoUpgrade(chain));
 
     // -------------------------
-    // Timer for Automatic Cookie Generation
+    // New Timer: Combine Auto and Human Clicks for CPS Calculation
     // -------------------------
+    // Remove the old 10ms interval. Create new one that fires every 1000ms.
     setInterval(() => {
+        // Sum auto-generated clicks from all chains.
         let totalAuto = autoClickerChains.reduce((sum, chain) => sum + chain.autoValue, 0);
+        // Calculate CPS as auto clicks plus human clicks this second.
+        let cps = totalAuto + humanClicksThisSecond;
+        cpsDisplay.textContent = cps;
+        // Add auto-generated cookies to the score (human clicks are already counted on click).
         if (totalAuto > 0) {
             score += totalAuto;
-            autoClickCount += totalAuto; // Track how many cookies came from auto upgrades
+            autoClickCount += totalAuto;
             scoreDisplay.textContent = score;
+            autoClicksDisplay.textContent = autoClickCount;
         }
-        // Update clicks per second (auto rate) in real time
-        // Since the interval is every 10 ms, totalAuto * 100 = auto clicks per second
-        cpsDisplay.textContent = totalAuto * 100;
-        // Update the auto clicks display
-        autoClicksDisplay.textContent = autoClickCount;
-    }, 10);
+        // Reset human click counter for the next second.
+        humanClicksThisSecond = 0;
+    }, 1000);
 
     // -------------------------
     // Mouse Click Functionality for Manual Clicking
@@ -143,6 +162,8 @@ document.addEventListener('DOMContentLoaded', () => {
     cookie.addEventListener('click', () => {
         score += cookieValue;
         humanClickCount += cookieValue; // Track how many cookies came from manual clicks
+        // Count human clicks this second for CPS calculation.
+        humanClicksThisSecond += cookieValue;
         scoreDisplay.textContent = score;
         humanClicksDisplay.textContent = humanClickCount;
 
