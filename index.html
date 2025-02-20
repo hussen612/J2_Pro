@@ -9,7 +9,22 @@
     <link rel="icon" type="image/png" href="media/cookie.png">  
 </head>
 <body>
-    <!-- New collapsible sidebar -->
+    <!-- Top bar to display total human clicks, total auto clicks, and clicks per second -->
+    <header id="top-bar">
+        <div id="stats-container">
+            <div class="stat">
+                <p>Total Human Clicks: <span id="human-clicks">0</span></p>
+            </div>
+            <div class="stat">
+                <p>Total Auto Clicks: <span id="auto-clicks">0</span></p>
+            </div>
+            <div class="stat">
+                <p>Clicks per Second: <span id="cps">0</span></p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Collapsible sidebar on the left -->
     <div id="sidebar" class="collapsed">
         <button id="sidebarToggle">☰</button>
         <ul id="mouse-upgrade"></ul>
@@ -23,12 +38,21 @@
             <ul id="auto-upgrade-7"></ul>
         </div>
     </div>
-    <!-- Wrap main content for layout adjustments -->
+
+    <!-- Main content in the centre -->
     <div id="main-content">
         <div id="game">
             <img id="cookie" src="media/cookie.png" alt="Cookie">
             <p>Score: <span id="score">0</span></p>
         </div>
     </div>
+
+    <!-- Right-hand panel for listing current upgrades or other info -->
+    <aside id="right-panel">
+        <h2>List of Current Upgrades</h2>
+        <ul id="current-upgrades-list">
+            <!-- Dynamically fill this if you wish to track purchased upgrades in detail -->
+        </ul>
+    </aside>
 </body>
 </html>
